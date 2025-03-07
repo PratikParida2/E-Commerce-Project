@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { assets } from '../assets/frontend_assets/assets'
 import {NavLink,Link} from 'react-router-dom'
 const NavBar = () => {
+  const [visible,setVisible]=useState(false);
   return (
     <div className='flex items-center justify-between py-5 font-medium '>
       <img src={assets.logo} alt="logo" className='w-36' />
@@ -40,9 +41,22 @@ const NavBar = () => {
         </div>
         <Link to='/cart' className='relative'>
             <img src={assets.cart_icon} className='w-5 min-w-5' alt="" />
-            <p className='absolute right-[-5px] bottom-[-5px] w-4 leading-4 bg-black text-white aspect-square rounded-full text-[8px] text-center'>10</p>
+            <p className='absolute right-[-5px] bottom-[-5px] w-[18px] leading-4 bg-black text-[#e61b1b] aspect-square rounded-full text-[10px] text-center'>10</p>
         </Link>
-        <img src={assets.menu_icon} className='w-5 cursor-pointer sm:hidden' alt="" />
+        <img onClick={()=>setVisible(true)} src={assets.menu_icon} className='w-5 cursor-pointer sm:hidden' alt="" />
+      </div>
+      {/* Side Bar Menu For Smaller Screen */}
+      <div className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white transition-all ${visible ? 'w-full' : 'w-0'}`}>
+          <div onClick={()=>setVisible(false)} className='flex flex-col text-gray-600 cursor-pointer'>
+              <div className='flex items-center gap-4 p-3'>
+                <img className='h-4 rotate-180 ' src={assets.dropdown_icon} alt="" />
+                <p>Back</p>
+              </div>
+              <NavLink to='/' className='pl-6 py-2 border'>Home</NavLink>
+              <NavLink to='/collections' className='pl-6 py-2 border'>Collections</NavLink>
+              <NavLink to='/about' className='pl-6 py-2 border'>About</NavLink>
+              <NavLink to='/contact' className='pl-6 py-2 border'>Contact</NavLink>
+          </div>
       </div>
     </div>
   )
