@@ -1,19 +1,91 @@
 import React from 'react'
 import { ShopContext } from '../context/ShopContext'
-import {useContext} from 'react'
+import {useContext,useState} from 'react'
 import ShowProduct from '../components/ShowProduct';
+import { Link } from 'react-router';
+import { assets } from '../assets/frontend_assets/assets';
 
 const Collection = () => {
   const {products}=useContext(ShopContext);
-  console.log(products);
-  console.log("Collection Page Yar");
+  const [showFilter,setShowFilter]=useState(false);
+  let count=0;
   return (
     <div className='flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t'>
       {/* Filter Section */}
 
         <div className='min-w-60'>
           <p className='my-2 text-xl flex items-center cursor-pointer gap-2 '>Filters</p>
-          <p></p>
+          <img className='h-3 sm:hidden ' src={assets.dropdown_icon} alt="" />
+          {/* Filter by Category */}
+          <div className={`border border-gray-300 pl-5 py-3 mt-6 ${showFilter?'':'hidden'} sm:block cursor-pointer`}>
+              <p className='mb-1 text-sm font-medium'>Categories</p>
+              <div className='flex flex-col gap-2 text-sm font-light text-gray-700'>
+                <Link to={'/men'}>
+                  <label className="flex items-center space-x-2 cursor-pointer gap-2">
+                    <input 
+                      className="w-3" 
+                      type="checkbox" 
+                      value="Men" 
+                      name="Men" 
+                    />
+                    Men
+                  </label>
+                </Link>
+                <Link to={'/women'}>
+                <label className="flex items-center space-x-2 cursor-pointer gap-2">
+                  <input 
+                    className="w-3" 
+                    type="checkbox" 
+                    value="Women" 
+                    name="Women" 
+                  />
+                  Women
+                </label>
+                </Link>
+                <label className="flex items-center space-x-2 cursor-pointer gap-2">
+                  <input 
+                    className="w-3" 
+                    type="checkbox" 
+                    value="Kids" 
+                    name="Kids" 
+                  />
+                  Kids
+                </label>
+                </div>
+          </div>
+          {/* Sub Categories */}
+          <div className={`border border-gray-300 pl-5 py-3 my-5 ${showFilter?'':'hidden'} sm:block cursor-pointer`}>
+              <p className='mb-1 text-sm font-medium'>Type</p>
+              <div className='flex flex-col gap-2 text-sm font-light text-gray-700'>
+              <label className="flex items-center space-x-2 cursor-pointer gap-2">
+                  <input 
+                    className="w-3" 
+                    type="checkbox" 
+                    value="TopWear" 
+                    name="TopWear" 
+                  />
+                  TopWear
+                </label>
+                <label className="flex items-center space-x-2 cursor-pointer gap-2">
+                  <input 
+                    className="w-3" 
+                    type="checkbox" 
+                    value="BottomWear" 
+                    name="BottomWear" 
+                  />
+                  BottomWear
+                </label>
+                <label className="flex items-center space-x-2 cursor-pointer gap-2">
+                  <input 
+                    className="w-3" 
+                    type="checkbox" 
+                    value="SummerWear" 
+                    name="SummerWear" 
+                  />
+                  SummerWear
+                </label>
+              </div>
+          </div>
         </div>
 
 
