@@ -12,7 +12,7 @@ const NavBar = () => {
             <hr className="w-3/4 border-none h-[1.5px] bg-gray-700 hidden" />
         </NavLink>
 
-        <NavLink to='/collections' className='flex flex-col items-center gap-1'>
+        <NavLink to='/collection' className='flex flex-col items-center gap-1'>
             <p>Collections</p>
             <hr className="w-3/4 border-none h-[1.5px] bg-gray-700 hidden" />
         </NavLink>
@@ -53,7 +53,7 @@ const NavBar = () => {
                 <p>Back</p>
               </div>
               <NavLink to='/' className='pl-6 py-2 border'>Home</NavLink>
-              <NavLink to='/collections' className='pl-6 py-2 border'>Collections</NavLink>
+              <NavLink to='/collection' className='pl-6 py-2 border'>Collections</NavLink>
               <NavLink to='/about' className='pl-6 py-2 border'>About</NavLink>
               <NavLink to='/contact' className='pl-6 py-2 border'>Contact</NavLink>
           </div>
