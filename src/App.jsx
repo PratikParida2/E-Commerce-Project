@@ -11,9 +11,6 @@ import PlaceOrder from './pages/PlaceOrder';
 import Product from './pages/Product';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
-import MenSection from './pages/MenSection';
-import WomenSection from './pages/WomenSection';
-import KidsSection from './pages/KidsSection';
 const App = () => {
   return (
     <div className='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]'>
@@ -28,9 +25,6 @@ const App = () => {
         <Route path='/product/:productId' element={<Product/>}/>
         <Route path='/place-order' element={<PlaceOrder/>}/>
         <Route path='/order' element={<Order/>}/>
-        <Route path='/men' element={<MenSection/>}/>
-        <Route path='/women' element={<WomenSection/>}/>
-        <Route path='/kids' element={<KidsSection/>} />
       </Routes>
       <Footer/>
     </div>

@@ -20,7 +20,7 @@ const Collection = () => {
           <div className={`border border-gray-300 pl-5 py-3 mt-6 ${showFilter?'':'hidden'} sm:block cursor-pointer`}>
               <p className='mb-1 text-sm font-medium'>Categories</p>
               <div className='flex flex-col gap-2 text-sm font-light text-gray-700'>
-                <Link to={'/men'}>
+            
                   <label className="flex items-center space-x-2 cursor-pointer gap-2">
                     <input 
                       className="w-3" 
@@ -30,8 +30,8 @@ const Collection = () => {
                     />
                     Men
                   </label>
-                </Link>
-                <Link to={'/women'}>
+   
+              
                 <label className="flex items-center space-x-2 cursor-pointer gap-2">
                   <input 
                     className="w-3" 
@@ -41,7 +41,7 @@ const Collection = () => {
                   />
                   Women
                 </label>
-                </Link>
+         
                 <label className="flex items-center space-x-2 cursor-pointer gap-2">
                   <input 
                     className="w-3" 
