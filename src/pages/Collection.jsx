@@ -8,7 +8,6 @@ import Title from '../components/Title';
 const Collection = () => {
   const {products}=useContext(ShopContext);
   const [showFilter,setShowFilter]=useState(false);
-  let count=0;
   return (
     <div className='flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t'>
       {/* Filter Section */}
@@ -101,7 +100,7 @@ const Collection = () => {
             </select>
         </div>
         <div className='grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5'>
-                {products.map((item,index)=>{return <ShowProduct key={index} id={item._id} image={item.image} name={item.name} price={item.price}/>})}
+                { products.map((item,index)=>{return <ShowProduct key={index} id={item._id} image={item.image} name={item.name} price={item.price}/>})}
             </div>
       </div>
     </div>
