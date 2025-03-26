@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { ShopContext } from '../context/ShopContext'
 import {useContext,useState} from 'react'
 import ShowProduct from '../components/ShowProduct';
@@ -7,7 +7,46 @@ import { assets } from '../assets/frontend_assets/assets';
 import Title from '../components/Title';
 const Collection = () => {
   const {products}=useContext(ShopContext);
+  const [filterProduct,setFilterProduct]=useState([]);
   const [showFilter,setShowFilter]=useState(false);
+  const [category,setCategory]=useState([]);
+  const [subCategory,setSubCategory]=useState([]);
+  const toggleCategory=(e)=>
+  {
+     let value=e.target.value;
+     setCategory((prev)=>prev.includes(value)?prev.filter((item)=>item!==value):[...prev,value]);
+  }
+
+  const toggleSubCategory=(e)=>
+    {
+       let value=e.target.value;     
+       console.log(value);
+         
+       setSubCategory((prev)=>prev.includes(value)?prev.filter((item)=>item!==value):[...prev,value]);
+    }
+  useEffect(()=>
+    {
+      setFilterProduct(products);
+    }
+    ,[]);
+
+  
+
+    const applyFilter=()=>
+    {
+      let productCopy=products.slice();
+      if(category.length>0)
+      productCopy=productCopy.filter((item)=>category.includes(item.category));
+      if(subCategory.length>0)
+      {
+        productCopy=productCopy.filter((item)=>subCategory.includes(item.subCategory));
+      }
+      setFilterProduct(productCopy)
+    }
+
+  useMemo(()=>{
+    applyFilter();
+  },[category,subCategory])    
   return (
     <div className='flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t'>
       {/* Filter Section */}
@@ -27,6 +66,7 @@ const Collection = () => {
                       type="checkbox" 
                       value="Men" 
                       name="Men" 
+                      onChange={toggleCategory}
                     />
                     Men
                   </label>
@@ -38,6 +78,7 @@ const Collection = () => {
                     type="checkbox" 
                     value="Women" 
                     name="Women" 
+                    onChange={toggleCategory}
                   />
                   Women
                 </label>
@@ -48,6 +89,7 @@ const Collection = () => {
                     type="checkbox" 
                     value="Kids" 
                     name="Kids" 
+                    onChange={toggleCategory}
                   />
                   Kids
                 </label>
@@ -61,8 +103,9 @@ const Collection = () => {
                   <input 
                     className="w-3" 
                     type="checkbox" 
-                    value="TopWear" 
-                    name="TopWear" 
+                    value="Topwear" 
+                    name="Topwear" 
+                    onChange={toggleSubCategory}
                   />
                   TopWear
                 </label>
@@ -70,8 +113,9 @@ const Collection = () => {
                   <input 
                     className="w-3" 
                     type="checkbox" 
-                    value="BottomWear" 
+                    value="Bottomwear"
                     name="BottomWear" 
+                    onChange={toggleSubCategory}
                   />
                   BottomWear
                 </label>
@@ -79,10 +123,11 @@ const Collection = () => {
                   <input 
                     className="w-3" 
                     type="checkbox" 
-                    value="SummerWear" 
-                    name="SummerWear" 
+                    value="Winterwear" 
+                    name="Winterwear" 
+                    onChange={toggleSubCategory}
                   />
-                  SummerWear
+                  WinterWear
                 </label>
               </div>
           </div>
@@ -100,7 +145,7 @@ const Collection = () => {
             </select>
         </div>
         <div className='grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5'>
-                { products.map((item,index)=>{return <ShowProduct key={index} id={item._id} image={item.image} name={item.name} price={item.price}/>})}
+                { filterProduct.map((item,index)=>{return <ShowProduct key={index} id={item._id} image={item.image} name={item.name} price={item.price}/>})}
             </div>
       </div>
     </div>

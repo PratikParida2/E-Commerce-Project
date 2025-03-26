@@ -29,6 +29,11 @@ const NavBar = () => {
       </ul>
       <div className='flex items-center gap-6'>
         <img src={assets.search_icon} className='cursor-pointer w-5' alt="" />
+
+        <Link to='/cart' className='relative'>
+            <img src={assets.cart_icon} className='w-5 min-w-5' alt="" />
+            <p className='absolute right-[-5px] bottom-[-5px] w-[18px] leading-4 bg-black text-[#e61b1b] aspect-square rounded-full text-[10px] text-center'>10</p>
+        </Link>
         <div className='group relative'>
             <img src={assets.profile_icon} className='cursor-pointer w-5' alt="" />
             <div className='group-hover:block hidden absolute dropdown-menu right-0 pt-4'>
@@ -39,10 +44,6 @@ const NavBar = () => {
                   </div>
             </div>
         </div>
-        <Link to='/cart' className='relative'>
-            <img src={assets.cart_icon} className='w-5 min-w-5' alt="" />
-            <p className='absolute right-[-5px] bottom-[-5px] w-[18px] leading-4 bg-black text-[#e61b1b] aspect-square rounded-full text-[10px] text-center'>10</p>
-        </Link>
         <img onClick={()=>setVisible(true)} src={assets.menu_icon} className='w-5 cursor-pointer sm:hidden' alt="" />
       </div>
       {/* Side Bar Menu For Smaller Screen */}
