@@ -5,8 +5,9 @@ import ShowProduct from '../components/ShowProduct';
 import { Link } from 'react-router';
 import { assets } from '../assets/frontend_assets/assets';
 import Title from '../components/Title';
+import SearchBar from '../components/SearchBar';
 const Collection = () => {
-  const {products}=useContext(ShopContext);
+  const {products,search,showSearch}=useContext(ShopContext);
   const [filterProduct,setFilterProduct]=useState([]);
   const [showFilter,setShowFilter]=useState(false);
   const [category,setCategory]=useState([]);
@@ -36,6 +37,10 @@ const Collection = () => {
     const applyFilter=()=>
     {
       let productCopy=products.slice();
+      if(search.length>0 && showSearch)
+      {
+        productCopy=productCopy.filter((item)=>item.name.toLowerCase().includes(search.toLowerCase()));
+      }
       if(category.length>0)
       productCopy=productCopy.filter((item)=>category.includes(item.category));
       if(subCategory.length>0)
@@ -74,7 +79,7 @@ const Collection = () => {
    
   useMemo(()=>{
     applyFilter();
-  },[category,subCategory])   
+  },[category,subCategory,search,showSearch])   
   return (
     <div className='flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t'>
       {/* Filter Section */}
