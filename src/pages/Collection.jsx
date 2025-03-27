@@ -11,6 +11,7 @@ const Collection = () => {
   const [showFilter,setShowFilter]=useState(false);
   const [category,setCategory]=useState([]);
   const [subCategory,setSubCategory]=useState([]);
+  const [sorted,setSorted]=useState("Relavent");
   const toggleCategory=(e)=>
   {
      let value=e.target.value;
@@ -44,9 +45,36 @@ const Collection = () => {
       setFilterProduct(productCopy)
     }
 
+      function handleSorted(e)
+      {
+         let value=e.target.value;
+         let sortedProduct=filterProduct.slice();
+         switch (value) {
+          case "LowToHigh":
+            {
+              sortedProduct.sort((a,b)=>(a.price-b.price));
+              setSorted("LowToHigh");
+              setFilterProduct(sortedProduct);
+              break;
+            }
+          case "HighToLow":
+            {
+              sortedProduct.sort((a,b)=>(b.price-a.price));
+              setSorted("HighToLow");
+              setFilterProduct(sortedProduct);
+              break;
+            }
+          default:
+            setSorted("Relavent");
+            applyFilter();
+            break;
+         }
+      }
+
+   
   useMemo(()=>{
     applyFilter();
-  },[category,subCategory])    
+  },[category,subCategory])   
   return (
     <div className='flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t'>
       {/* Filter Section */}
@@ -138,8 +166,8 @@ const Collection = () => {
         <div className='flex justify-between text-base sm:text-2xl mb-4'>
             <Title text1={"All"} text2={"Collections"}/>
             {/* Product Sort */}
-            <select className='border-2 border-gray-400 text-sm px-2'>
-              <option value="Relative">Sort by : Relavent</option>
+            <select className='border-2 border-gray-400 text-sm px-2' onChange={(e)=>handleSorted(e)}>
+              <option value="Relative" >Sort by : Relavent</option>
               <option value="LowToHigh">Sort by : Low To High</option>
               <option value="HighToLow" >Sort by : High To Low</option>
             </select>
