@@ -8,8 +8,9 @@ const ShopContextProvider=(props)=>
     const deliveryCharge=10;
     const[showSearch,setShowSearch]=useState(false);
     const[search,setSearch]=useState('');
+    let cart=[];
     const value={
-        products,currency,deliveryCharge,showSearch,setShowSearch,search,setSearch
+        products,currency,deliveryCharge,showSearch,setShowSearch,search,setSearch,cart
     }
     return (
         <ShopContext.Provider value={value}>
