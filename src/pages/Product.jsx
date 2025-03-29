@@ -3,6 +3,7 @@ import { useParams } from 'react-router'
 import { ShopContext } from '../context/ShopContext';
 import ShowProduct from '../components/ShowProduct';
 import { assets } from '../assets/frontend_assets/assets';
+import Related from '../components/Related';
 const Product = () => {
   const {products,currency}=useContext(ShopContext);
   // console.log(products);
@@ -82,6 +83,10 @@ const Product = () => {
 Find your perfect dress today and redefine your style! Shop now at ShopNow!</p>
           </div>
       </div>
+
+      {/* Related Product...... */}
+      <Related category={products[index].category} subCategory={products[index].subCategory}/>
+    
 
     </div>
 
