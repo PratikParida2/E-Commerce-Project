@@ -4,14 +4,16 @@ import { ShopContext } from '../context/ShopContext';
 import ShowProduct from '../components/ShowProduct';
 import { assets } from '../assets/frontend_assets/assets';
 import Related from '../components/Related';
+
 const Product = () => {
-  const {products,currency}=useContext(ShopContext);
+  const {products,currency,addToCart}=useContext(ShopContext);
   // console.log(products);
   const [size,setSize]=useState('');
   const parameter=useParams();
   let index=-1;
 
-  console.log(products);
+  
+  
   for(let i=0;i<products.length;i++)
   {
     if(products[i]._id===parameter.productId)
@@ -58,7 +60,7 @@ const Product = () => {
             </div>
           </div>
 
-       <button className='bg-gray-700 text-white px-8 py-3 text-sm active:bg-gray-900 cursor-pointer '>Add To Cart</button>
+       <button className='bg-gray-700 text-white px-8 py-3 text-sm active:bg-gray-900 cursor-pointer ' onClick={()=>{addToCart(products[index]._id,size)}}>Add To Cart</button>
        <hr className='mt-8 sm:w-4/5' />
 
        <div className='text-sm text-gray-500 mt-5 flex flex-col gap-1'>
