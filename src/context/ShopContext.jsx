@@ -10,8 +10,6 @@ const ShopContextProvider=(props)=>
     
     const[showSearch,setShowSearch]=useState(false);
     const[search,setSearch]=useState('');
-    // let [cartItem,setCartItem]=useState({});
-  
     const [cartItem, setCartItem] = useState(() => {
         const savedCart = localStorage.getItem("CartItemsData");
         return savedCart ? JSON.parse(savedCart) : {};
