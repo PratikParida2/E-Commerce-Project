@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { assets } from '../assets/frontend_assets/assets'
-import {NavLink,Link} from 'react-router-dom'
+import {NavLink,Link, Links} from 'react-router-dom'
 import { ShopContext } from '../context/ShopContext';
 
 const NavBar = () => {
@@ -38,7 +38,7 @@ const NavBar = () => {
             <p className='absolute right-[-5px] bottom-[-5px] w-[18px] leading-4 bg-black text-[#e61b1b] aspect-square rounded-full text-[10px] text-center'>{getCartCount()}</p>
         </Link>
         <div className='group relative'>
-            <img src={assets.profile_icon} className='cursor-pointer w-5' alt="" />
+           <Link to={'/login'} > <img src={assets.profile_icon} className='cursor-pointer w-5' alt="" /></Link>
             <div className='group-hover:block hidden absolute dropdown-menu right-0 pt-4'>
                   <div className='flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-slate-500 rounded'>
                       <p className='cursor-pointer hover:text-black'>My Profile</p>
